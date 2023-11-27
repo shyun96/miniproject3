@@ -157,7 +157,8 @@ function CreatePage() {
               onChange={handlerChange}
             />
             {imagePreview && (
-              <img className={styles.previewImage} src={imagePreview} alt="Selected Image" />
+             {imagePreview && (<img className={styles.previewImage}
+              src={imagePreview} alt="Selected" />)}
             )}
           </div>
         </div>
