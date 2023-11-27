@@ -5,14 +5,14 @@
     align-items: center;
   }
   
-  .cardContainer {
+.cardContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
     max-width: 1024px;
     min-width: 1024px;
     gap: 70px;
-  }
+}
   
   .dropDownContainer {
     display: flex;
