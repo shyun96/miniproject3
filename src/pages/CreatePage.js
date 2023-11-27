@@ -156,10 +156,7 @@ function CreatePage() {
               value={formData.itemContent}
               onChange={handlerChange}
             />
-            {imagePreview && (
-             {imagePreview && (<img className={styles.previewImage}
-src={imagePreview} alt="Selected" />)}
-            )}
+            {imagePreview && <img className={styles.previewImage} src={imagePreview} alt="Selected" />}
           </div>
         </div>
         <div style={{ textAlign: 'center' }}>
@@ -172,6 +169,9 @@ src={imagePreview} alt="Selected" />)}
       </div>
     </>
   );
+  }
+}
+export default CreatePage;
 }
 
 export default CreatePage;
