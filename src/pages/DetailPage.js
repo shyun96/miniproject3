@@ -31,11 +31,11 @@ function DetailPage() {
     purchaseId = localStorage.getItem('userId')
     // }
     
-    if (data.user_id == purchaseId) { 
+    if (data.user_id === purchaseId) { 
       alert('본인 물건은 입찰 불가능입니다. ');
       return; // 입찰을 막습니다.
     }
-    if (purchaseId == '') { 
+    if (purchaseId === '') { 
       alert('로그인 후 입찰 가능합니다. ');
       return; // 입찰을 막습니다.
     }
