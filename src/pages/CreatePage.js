@@ -13,10 +13,11 @@ function CreatePage() {
     userId:''
   });
 
-  const refitemName = useRef();
-  const refitemContent = useRef();
-  const refitemPrice = useRef();
-  const refitemImage = useRef();
+  const refendTime = useRef(null);
+  const refitemName = useRef(null);
+  const refitemContent = useRef(null);
+  const refitemPrice = useRef(null);
+  const refitemImage = useRef(null);
   const [imagePreview, setImagePreview] = useState('');
   const userId = localStorage.getItem('userId');
   const navigate = useNavigate();
@@ -26,11 +27,11 @@ function CreatePage() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handlerImageClick = () => {
+  const handleImageClick = () => {
     refitemImage.current.click();
   };
 
-  const handlerImageChange = (e) => {
+  const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setFormData({ ...formData, itemImage: file });
@@ -41,15 +42,16 @@ function CreatePage() {
       reader.readAsDataURL(file);
     }
   };
-
-  const handlerDateChange = (e) => {
+  const handleDateChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   const handlerClick = (e) => {
     e.preventDefault();
+
     const { itemName, itemContent, itemPrice, itemImage, endTime} = formData;
+
     if (itemName.trim() === '') {
       alert('경매 물품 이름을 입력하세요.');
       refitemName.current.focus();
@@ -73,6 +75,13 @@ function CreatePage() {
     return;
   }
 
+  // if (userPwd1.trim() !== userPwd2.trim()) {
+  //     alert('패스워드가 일치하지 않습니다.');
+  //     setFormData({ ...formData, userPwd1: '', userPwd2: '' });
+  //     refUserPwd1.current.focus();
+  //     return;
+  // };
+
   alert(`경매물품: ${itemName}\n경매내용: ${itemContent}\n경매가격: ${itemPrice}\n`);
   const data = new FormData();
   data.append('endTime', endTime);
@@ -82,7 +91,7 @@ function CreatePage() {
   data.append('itemImage', itemImage);
   data.append('userId',userId )
 
-  axios.post('http://10.0.0.4:5000/create', data)
+  axios.post('http://127.0.0.1:5000/create', data)
     .then(response => {
       alert('경매물품이 등록되었습니다.');
       navigate("/");
@@ -105,13 +114,29 @@ function CreatePage() {
               <input className={styles.auinputField} placeholder="경매가격" ref={refitemPrice} type="text" name="itemPrice" value={formData.itemPrice} onChange={handlerChange} /><br />
               <input
               className={styles.auinputField}
-              type="datetime-local"
+              type="datetime-local" // Input type for date and time
               name="endTime"
               value={formData.endTime}
-              onChange={handlerDateChange}
+              onChange={handleDateChange}
               style={{ width: '100%' }}
             /><br />
-            <button className={styles.imagebutton} onClick={handlerImageClick}>
+            {/* <input
+              className={styles.auinputField}
+              placeholder="경매물품"
+              type="text"
+              name="itemName"
+              value={formData.itemName}
+              onChange={handlerChange}
+            />
+            <input
+              className={styles.auinputField}
+              placeholder="경매가격"
+              type="text"
+              name="itemPrice"
+              value={formData.itemPrice}
+              onChange={handlerChange}
+            /> */}
+            <button className={styles.imagebutton} onClick={handleImageClick}>
               사진 첨부
             </button>
             <input
@@ -120,7 +145,7 @@ function CreatePage() {
               name="itemImage"
               ref={refitemImage}
               style={{ display: 'none' }}
-              onChange={handlerImageChange}
+              onChange={handleImageChange}
             />
           </div>
           <div className={styles.flexdivide}>
@@ -132,7 +157,8 @@ function CreatePage() {
               onChange={handlerChange}
             />
             {imagePreview && (
-              <img className={styles.previewImage} src={imagePreview} alt="Selected" />
+             {imagePreview && (<img className={styles.previewImage}
+src={imagePreview} alt="Selected" />)}
             )}
           </div>
         </div>
