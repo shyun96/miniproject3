@@ -18,7 +18,7 @@ function LoginPage() {
         return;
       } 
 
-      const response = await fetch(`http://10.0.0.4:5000/login`, {
+      const response = await fetch(`http://34.213.37.167:5000/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
