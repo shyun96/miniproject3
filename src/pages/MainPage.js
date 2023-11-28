@@ -14,7 +14,7 @@ function MainPage() {
   useEffect(() => {
       const queryString = `sort=${sortMethod}&keyword=${query}`;
       axios
-        .get(`http://10.0.0.4:5000?${queryString}`)
+        .get(`http://34.213.37.167:5000?${queryString}`)
         .then((itemData) => {
           console.log(itemData.data)
           setItemDataList(itemData.data);
