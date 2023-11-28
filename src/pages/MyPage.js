@@ -15,7 +15,7 @@ function MyPage() {
       const userId = localStorage.getItem('userId');
   
       axios
-        .get(`http://10.0.0.4:5000/mypage/buyitem?id=${userId}`, {
+        .get(`http://34.213.37.167:5000/mypage/buyitem?id=${userId}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -31,7 +31,7 @@ function MyPage() {
       const userId = localStorage.getItem('userId');
   
       axios
-        .get(`http://10.0.0.4:5000/mypage/myitem?id=${userId}`, {
+        .get(`http://34.213.37.167:5000/mypage/myitem?id=${userId}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
